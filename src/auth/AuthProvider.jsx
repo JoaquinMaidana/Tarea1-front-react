@@ -7,27 +7,29 @@ const AuthContext = createContext({
   getToken: () => "",
   saveUser: (token) =>{},
   getTokenL: () =>{},
+  getUser: () =>{},
+  logout: () =>{},
 });
 
 export function AuthProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState("");
+  const [user,setUser] = useState({});
   //estado user
   useEffect (() => {
     
     checkAuth();
   },[]);
 
-  async function getUserInfo(token_){
-    infoUsuario(token_)
-    .then(data =>{
-    console.log("la data es: "+data);
-        return data;   
-    })
-    .catch((error)=>{
-    console.log(error);
-    return null;
-    });
+  async function getUserInfo(token) {
+    try {
+      const data = await infoUsuario({ token }); // Esperar la respuesta de infoUsuario
+      console.log("la data es: " + data);
+      return data;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
   }
 
   async function checkAuth(){
@@ -40,12 +42,28 @@ export function AuthProvider({ children }) {
         if(token){
             setToken(token);
             setIsAuthenticated(true);
+            const userInfo = await getUserInfo(token);
+            if(userInfo){
+              setToken(token);
+              localStorage.setItem("token",JSON.stringify(token));
+              setIsAuthenticated(true);
+              setUser(userInfo);
+            }
         }
       }
   }
 
   function getToken(){
       return token;
+  }
+
+  function getUser(){
+    return user;
+  }
+
+  function logout(){
+    localStorage.removeItem("token");
+    setIsAuthenticated(false);
   }
 
   function getTokenL(){
@@ -58,7 +76,7 @@ export function AuthProvider({ children }) {
     return null;
   }
 
-  //falta traer los datos del usuario tambien
+
   function saveUser(token){
     setToken(token);
     localStorage.setItem("token",JSON.stringify(token));
@@ -66,7 +84,7 @@ export function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, getToken, saveUser, getTokenL }}>
+    <AuthContext.Provider value={{ isAuthenticated, getToken, saveUser, getTokenL, getUser, logout }}>
       {children}
     </AuthContext.Provider>
   );

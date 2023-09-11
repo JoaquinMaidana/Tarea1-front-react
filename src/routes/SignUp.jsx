@@ -1,4 +1,4 @@
-import DefaultLayout from "../layout/DefaultLayout";
+import PortalLayout from "../layout/PortalLayout";
 import {useAuth} from "../auth/AuthProvider";
 import {Navigate} from "react-router-dom";
 import { createUsuario } from '../services/usuarios/createUsuario.js';
@@ -38,12 +38,12 @@ export default function SignUp(){
 
     if(auth.isAuthenticated)
     {
-        return <Navigate to="/dashboard" />
+        return <Navigate to="/lobby" />
     }
 
     return(
         <>
-        <DefaultLayout>           
+        <PortalLayout>           
             
             <div class="container d-flex justify-content-center align-items-center w-100 h-100 ">
                 <div class="row w-100">
@@ -87,7 +87,7 @@ export default function SignUp(){
                 </div>
                
             </div>
-        </DefaultLayout>
+        </PortalLayout>
     </> 
     ); 
 }

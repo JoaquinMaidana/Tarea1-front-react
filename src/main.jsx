@@ -4,7 +4,7 @@ import App from './App.jsx'
 import './index.css'
 import Login from './routes/Login.jsx';
 import SignUp from './routes/SignUp.jsx';
-import Dashboard from './routes/Dashboard.jsx';
+import Lobby from './routes/Lobby.jsx';
 import Game from './routes/Game.jsx';
 import {createBrowserRouter,RouterProvider} from 'react-router-dom';
 import ProtectedRoute from './routes/ProtectedRoute.jsx';
@@ -24,8 +24,8 @@ const router = createBrowserRouter([
         element: <ProtectedRoute/>,
         children: [
             {
-                path: "/dashboard",
-                element: <Dashboard/>,
+                path: "/lobby",
+                element: <Lobby/>,
             }
         ]
     },
