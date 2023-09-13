@@ -15,6 +15,7 @@ export function AuthProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState("");
   const [user,setUser] = useState({});
+  const [position,setPosition] = useState("");
   //estado user
   useEffect (() => {
     
@@ -59,6 +60,14 @@ export function AuthProvider({ children }) {
 
   function getUser(){
     return user;
+  }
+
+  function getPosition(){
+      return position;
+  }
+
+  function savePosition(position){
+      setPosition(position);
   }
 
   function logout(){

@@ -1,16 +1,40 @@
 import React, { Component } from 'react';
 import { calculateWinner } from './helpers';
 import Square from './Square';
+import { io } from 'socket.io-client';
+
+
 
 class Board extends React.Component {
   constructor(props) {
     super(props);
+    this.socket = io('http://localhost:1234/game');
+    console.log("socket juego");
     this.state = {
       squares: Array(9).fill(null),
       xIsNext: true,
       winner: null,
     };
   }
+
+
+  componentDidMount() {
+    // Escuchar eventos de Socket.IO para actualizar el estado del juego
+    this.socket.on('jugada', (indice) => {
+      this.handleClick(indice);
+    });
+
+    
+    console.log("juego");
+  }
+
+  componentWillUnmount() {
+    // Cierra la conexión del socket aquí
+    this.socket.disconnect();
+  }
+
+  
+  
 
   handleClick(i) {
     const squares = this.state.squares.slice();
@@ -19,11 +43,14 @@ class Board extends React.Component {
     }
     squares[i] = this.state.xIsNext ? 'X' : 'O';
     const winner = calculateWinner(squares);
+   
     this.setState({
       squares: squares,
       xIsNext: !this.state.xIsNext,
       winner: winner,
     });
+
+    this.socket.emit('jugada', i);
 
     if (winner) {
       setTimeout(() => {
@@ -50,6 +77,8 @@ class Board extends React.Component {
     let status;
     if (winner) {
       status = 'Winner: ' + winner;
+      //emitir evento al server o peticion nomas
+
     } else {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     }
