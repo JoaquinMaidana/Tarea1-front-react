@@ -5,6 +5,8 @@ import { infoUsuario } from '../services/usuarios/infoUsuario.js';
 const AuthContext = createContext({
   isAuthenticated: false,
   getToken: () => "",
+  getPosition: () => "",
+  savePosition: () => "",
   saveUser: (token) =>{},
   getTokenL: () =>{},
   getUser: () =>{},
@@ -15,6 +17,7 @@ export function AuthProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [token, setToken] = useState("");
   const [user,setUser] = useState({});
+  const [position,setPosition] = useState("");
   //estado user
   useEffect (() => {
     
@@ -48,6 +51,7 @@ export function AuthProvider({ children }) {
               localStorage.setItem("token",JSON.stringify(token));
               setIsAuthenticated(true);
               setUser(userInfo);
+              console.log(userInfo);
             }
         }
       }
@@ -59,6 +63,14 @@ export function AuthProvider({ children }) {
 
   function getUser(){
     return user;
+  }
+
+  function getPosition(){
+      return position;
+  }
+
+  function savePosition(position){
+      setPosition(position);
   }
 
   function logout(){
@@ -84,7 +96,7 @@ export function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, getToken, saveUser, getTokenL, getUser, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, getToken, saveUser, getTokenL, getUser, logout , getPosition, savePosition}}>
       {children}
     </AuthContext.Provider>
   );

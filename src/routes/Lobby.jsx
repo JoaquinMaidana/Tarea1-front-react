@@ -6,25 +6,30 @@ import { io } from 'socket.io-client';
 import { useState, useEffect } from 'react';
 import { LiMensaje, UlMensajes } from '../ui-components';
 
-const socket = io('http://localhost:1234');
+//const socket = io('http://localhost:1234');
+//const socket = io('http://localhost:1234/lobby');
+let socket = null;
+
 export default function Lobby(){
     const auth = useAuth();
-
+    
     const [isConnected, setIsConnected] = useState(false);
   const [nuevoMensaje, setNuevoMensaje] = useState('');
   const [mensajes, setMensajes] = useState([]);
-
+  
+  //en el use efect pongo los socket on
   useEffect(() => {
-
+    socket = io('http://localhost:1234/lobby');
     socket.on('connect', () => setIsConnected(true));
 
     socket.on('chat_message', (data) => {
       setMensajes(mensajes => [...mensajes, data]);
     });
-
+    console.log("lobby");
     return () => {
       socket.off('connect');
       socket.off('chat_message');
+      socket.disconnect();
     }
 
   }, []);
