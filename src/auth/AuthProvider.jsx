@@ -5,6 +5,8 @@ import { infoUsuario } from '../services/usuarios/infoUsuario.js';
 const AuthContext = createContext({
   isAuthenticated: false,
   getToken: () => "",
+  getPosition: () => "",
+  savePosition: () => "",
   saveUser: (token) =>{},
   getTokenL: () =>{},
   getUser: () =>{},
@@ -49,6 +51,7 @@ export function AuthProvider({ children }) {
               localStorage.setItem("token",JSON.stringify(token));
               setIsAuthenticated(true);
               setUser(userInfo);
+              console.log(userInfo);
             }
         }
       }
@@ -93,7 +96,7 @@ export function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, getToken, saveUser, getTokenL, getUser, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, getToken, saveUser, getTokenL, getUser, logout , getPosition, savePosition}}>
       {children}
     </AuthContext.Provider>
   );
