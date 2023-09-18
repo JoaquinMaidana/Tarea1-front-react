@@ -4,41 +4,40 @@
  
   
 }
-h1{
-  text-align: center;
+
+html::-webkit-scrollbar {
+  width: 10px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+html::-webkit-scrollbar-track {
+  background: rgb(179, 177, 177);
+  border-radius: 10px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+html::-webkit-scrollbar-thumb {
+  background: rgb(136, 136, 136);
+  border-radius: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+html::-webkit-scrollbar-thumb:hover {
+  background: rgb(100, 100, 100);
+  border-radius: 10px;
 }
 
-.card {
-  padding: 2em;
+html::-webkit-scrollbar-thumb:active {
+  background: rgb(68, 68, 68);
+  border-radius: 10px;
 }
+
+
+h1,h2{
+  text-align: end;
+  color: white;
+  padding-right: 30px;
+  font-weight: 200;
+}
+
+
 
 .read-the-docs {
   color: #888;
@@ -46,6 +45,7 @@ h1{
 
 main{
   height: 88vh;
+  background-image: url('./background-lobby.jpg');
 }
 
 footer{
@@ -65,4 +65,203 @@ footer{
   align-items: center;
   font-size: 20px;
 }
+
+.chatContainer{
+  
+  height: 60vh;
+  margin-bottom: 2vh;
+  
+}
+
+.chat{
+ 
+  width: 60vw;
+  margin-left: 20px;
+  margin-right: 50px;
+}
+.chat > ul{
+  overflow-y: scroll;
+  height: 60vh;
+  padding: 15px;
+}
+.listados{
+ 
+  margin-right: 10px;
+}
+
+.contenedor{
+  display: flex;
+}
+
+#myTab{
+  width: 30vw;
+}
+
+.container{
+  margin: 0px;
+  width: 100%;
+}
+
+.row{
+  width: 100%;
+}
+
+.nav.nav-tabs .nav-item button{
+  color: rgb(221, 106, 106);
+  
+  
+}
+
+ #myTabContent{
+  width: 30vw;
+  margin-right: 20px;
+  height: 50vh;
+  overflow-y: scroll;
+  
+  
+}
+
+.partida h2{
+  font-size:25px;
+  text-align: center;
+}
+
+.partida{
+  padding: 5px;
+  border: 1px solid lightgrey;
+  margin-top: 10px;
+  padding: 15px;
+}
+
+.game{
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+}
+
+.game-board{
+  height: 80%;
+}
+
+.game-board .status{
+  height: 7vh;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10vh;
+  color: white;
+  font-size: 20px;
+  background-color: #888;
+}
+.game-board div{
+  height: 100%;
+  
+}
+
+.game-board div.board-row{
+  height: 10%;
+}
+
+.board-row{
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+}
+.board-row .square {
+  
+  height: 100px;
+  
+  width: 100px;
+  border: 2px solid #000;
+  border-radius: 15px;
+  margin-right: 17px;
+  border: 1px solid #ff0000;
+    box-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 10px #ff0000; /* Sombras para el efecto neon en el borde */
+  
+}
+
+button{
+  font-size: 40px;
+  font-weight: 200;
+}
+
+.btnChat{
+  font-size: 16px;
+  font-weight: 200;
+}
+
+.salas{
+  display: flex;
+  height: 60px;
+  margin-left: 45px;
+  margin-top: -20px;
+}
+
+.salas h3{
+  font-size: 15px;
+  margin-bottom: 0px;
+  cursor: pointer;
+}
+
+.salas div{
+  color: rgb(0, 0, 0);
+  width: 70px;
+  height: 60px;
+  padding: 7px;
+
+  margin-right: 20px;
+  background-color: lightgray;
+  border: 1px solid #ff0000;
+  box-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 10px #ff0000; 
+  border-radius: 8px;/* Sombras para el efecto neon en el borde */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.salas div span{
+  background-color: rgba(180, 179, 179, 0.432);
+  border-radius: 10px;
+  padding: 3px;
+  
+}
+
+.linkSala{
+  text-decoration: none;
+  color: black;
+  
+}
+
+
+.tab-content::-webkit-scrollbar {
+  width: 10px;
+}
+
+.tab-content::-webkit-scrollbar-track {
+  background: rgb(179, 177, 177);
+  border-radius: 10px;
+}
+
+.tab-content::-webkit-scrollbar-thumb {
+  background: rgb(136, 136, 136);
+  border-radius: 10px;
+}
+
+.tab-content::-webkit-scrollbar-thumb:hover {
+  background: rgb(100, 100, 100);
+  border-radius: 10px;
+}
+
+.tab-content::-webkit-scrollbar-thumb:active {
+  background: rgb(68, 68, 68);
+  border-radius: 10px;
+}
+
+
+.chat>ul::-webkit-scrollbar {
+  width: 10px;
+}
+
+
+
+
 

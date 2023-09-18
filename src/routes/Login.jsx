@@ -2,6 +2,7 @@ import DefaultLayout from "../layout/DefaultLayout";
 import {useAuth} from "../auth/AuthProvider";
 import {Navigate, useNavigate} from "react-router-dom";
 import { loginUsuario } from '../services/usuarios/loginUsuario.js';
+import { Link } from "react-router-dom";
 import React, {  useState,useEffect } from "react";
 export default function Login(){
     const [email, setEmail] = useState("");
@@ -45,7 +46,7 @@ export default function Login(){
             <div class="container d-flex justify-content-center align-items-center w-100 h-100 ">
                 <div class="row w-100">
                     <div class="col-4 m-auto">
-                            <h1 class="w-70">Inicio de sesion</h1>
+                            <h1 class="w-70">Inicio de sesión</h1>
                             <form class="mt-5" onSubmit={handleSubmit}>
                                                    
                             <div class="mb-3">
@@ -67,8 +68,11 @@ export default function Login(){
                                     onChange={(e) => setPassword(e.target.value)}  
                                 />
                             </div>
-                                
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <Link to="/registro">
+                                    No tienes cuenta? registrate!
+                                </Link>
+                                <br></br>
+                                <button type="submit" class="btn btn-primary">Inicar Sessión</button>
                             </form>
                         </div>
 

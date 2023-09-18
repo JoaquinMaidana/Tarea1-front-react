@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
-import './index.css'
+
 import Login from './routes/Login.jsx';
 import SignUp from './routes/SignUp.jsx';
 import Lobby from './routes/Lobby.jsx';
@@ -34,7 +34,7 @@ const router = createBrowserRouter([
         element: <ProtectedRoute/>,
         children: [
             {
-                path: "/juego",
+                path: "/juego/:sala",
                 element: <Game/>,
             }
         ]

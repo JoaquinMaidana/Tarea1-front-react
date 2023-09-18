@@ -35,14 +35,9 @@ export default function PortalLayout({ children }) {
                         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                             <div className="navbar-nav">
                                 <Link className="nav-link active" to="/lobby">
-                                    Dashboard
-                                </Link>
-                                <Link className="nav-link" to="/registro">
-                                    Registro
-                                </Link>
-                                <Link className="nav-link" to="/juego">
-                                    Juego
-                                </Link>
+                                    Lobby
+                                </Link>                               
+                              
                                 <a className="nav-link" onClick={handleSignOut}>
                                     Cerrar Sesión
                                 </a>
@@ -56,11 +51,21 @@ export default function PortalLayout({ children }) {
                 {children}
             </main>
 
-            <footer class="d-flex justify-content-center">
+            <footer class="d-flex align-items-center flex-column">
                 <div class="footContainer">
                 <img class="imagenTip" src="../public/TI-logo.png" alt="Imagen Tip" />   -  Creado por Joaquín Maidana - 2023
-                </div>
+                
+                
+                
              
+                </div>
+                <br></br>
+                <div>
+                Atribuciones: 
+                <a href="https://www.vecteezy.com/free-vector/gaming-background">Gaming Background Vectors by Vecteezy</a>
+                </div>
+              
+                
             </footer>
         </>
     );

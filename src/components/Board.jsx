@@ -3,13 +3,16 @@ import { calculateWinner } from './helpers';
 import Square from './Square';
 import { io } from 'socket.io-client';
 import { useAuth } from "../auth/AuthProvider";
+import { useParams } from "react-router-dom";
 import { createPartida } from '../services/partida/createPartida.js';
+
 function BoardWrapper() {
   const auth = useAuth();
   const nickname = auth.getUser().nickname;
   const id = auth.getUser()._id;
+  const { sala } = useParams();
   console.log(nickname);
-  return <Board nickname={nickname} id={id}/>;
+  return <Board nickname={nickname} id={id}  sala={sala}/>;
 }
 
 
@@ -19,7 +22,8 @@ class Board extends React.Component {
     this.socket = io('http://localhost:1234/game', {
       query: {
         nickname: props.nickname,
-        id: props.id, // Reemplaza 'TuNicknameAquí' con el nickname real
+        id: props.id,
+        sala: props.sala // Reemplaza 'TuNicknameAquí' con el nickname real
       },
     });
     //this.playerX = 'sin asignar';
