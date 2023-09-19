@@ -5,14 +5,18 @@ import { io } from 'socket.io-client';
 import { useAuth } from "../auth/AuthProvider";
 import { useParams } from "react-router-dom";
 import { createPartida } from '../services/partida/createPartida.js';
+import {Navigate, useNavigate} from "react-router-dom";
+
 
 function BoardWrapper() {
-  const auth = useAuth();
-  const nickname = auth.getUser().nickname;
+  const auth =  useAuth();
+  
+  const nickname =  auth.getUser().nickname;
   const id = auth.getUser()._id;
   const { sala } = useParams();
   console.log(nickname);
   return <Board nickname={nickname} id={id}  sala={sala}/>;
+  
 }
 
 
@@ -35,7 +39,7 @@ class Board extends React.Component {
       xIsNext: true,
       winner: null,
       winnerNickname:null,
-      playerX: "sin asignar", // Inicialmente, se establece como 'sin asignar'
+      playerX: "sin asignar", 
       playerO: "sin asignar",
       playerXid:"",
       playerOid:"",
@@ -45,7 +49,7 @@ class Board extends React.Component {
   
 
   componentDidMount() {
-    // Escuchar eventos de Socket.IO para actualizar el estado del juego
+    
     this.socket.on('jugada', (indice) => {
       this.handleClick(indice);
     });
@@ -65,12 +69,16 @@ class Board extends React.Component {
       }
     });
 
+    this.socket.on('disconect', (obj) => {
+      
+    });
+
     
     console.log("juego");
   }
 
   componentWillUnmount() {
-    // Cierra la conexión del socket aquí
+    
     this.socket.disconnect();
   }
 

@@ -6,8 +6,10 @@ import { io } from 'socket.io-client';
 import { useState, useEffect } from 'react';
 import { LiMensaje, UlMensajes } from '../ui-components';
 import { ItemPartida } from "../components/ItemPartida.jsx";
+import { ItemUsuario } from "../components/ItemUsuario.jsx";
 import { getAllPartidas } from '../services/partida/getAllPartidas.js';
 import { get10Partidas } from '../services/partida/get10Partidas.js';
+import { getTopGanadores } from '../services/partida/getTopGanadores.js';
 //const socket = io('http://localhost:1234');
 //const socket = io('http://localhost:1234/lobby');
 let socket = null;
@@ -20,6 +22,7 @@ export default function Lobby() {
   const [mensajes, setMensajes] = useState([]);
   const [itemsTodas, setItemsTodas] = useState([]);
   const [itemsUltimas10, setItemsUltimas10] = useState([]);
+  const [topGanadores, setTopGanadores] = useState([]);
 
 
   //en el use efect pongo los socket on
@@ -31,6 +34,11 @@ export default function Lobby() {
       setMensajes(mensajes => [...mensajes, data]);
     });
     console.log("lobby");
+
+    socket.on('gameConnection', (sala) => {
+     console.log(sala);
+    });
+
     return () => {
       socket.off('connect');
       socket.off('chat_message');
@@ -56,6 +64,16 @@ export default function Lobby() {
     get10Partidas('descendente', 10)
       .then((partidas) => {
         setItemsUltimas10(partidas);
+      });
+
+  }, []);
+
+  useEffect(() => {
+    console.log("useEffect");
+
+    getTopGanadores()
+      .then((usuarios) => {
+        setTopGanadores(usuarios);
       });
 
   }, []);
@@ -135,10 +153,10 @@ export default function Lobby() {
                   <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Todas las partidas</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Jugadores con mas victorias</button>
+                  <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Ultimas 10 partidas</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                  <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Ultimas 10 partidas</button>
+                  <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Jugadores con mas victorias</button>
                 </li>
 
               </ul>
@@ -153,16 +171,23 @@ export default function Lobby() {
                   </ol>
                 </div>
                 <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-
-                </div>
-                <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
-                  <ol>
+                <ol class="p-3">
                     {
                       itemsUltimas10.map((item) => {
                         return <ItemPartida  key={item._id} jugadorX={item.jugadorX.nickname} jugadorO={item.jugadorO.nickname} ganador={item.ganador.nickname} fecha={item.fecha}/>
                       })
                     }
                   </ol>
+                </div>
+                <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+                  
+                  <ol class="p-3">
+                      {
+                        topGanadores.map((item) => {
+                          return <ItemUsuario  key={item._id} jugador={item.jugador.nickname}  total={item.totalPartidasGanadas}/>
+                        })
+                      }
+                    </ol>
                 </div>
 
               </div>

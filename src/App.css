@@ -126,10 +126,20 @@ footer{
   text-align: center;
 }
 
+.reglas{
+  background-color: lightgray;
+  width: 200px;
+  border-radius: 30px;
+  padding: 15px;
+  position: absolute;
+  margin-left: 50px;
+}
+
 .partida{
   padding: 5px;
-  border: 1px solid lightgrey;
-  margin-top: 10px;
+  border: 1px solid #ff0000;
+  box-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 10px #ff0000; /* Sombras para el efecto neon en el borde */
+  margin-top: 20px;
   padding: 15px;
 }
 

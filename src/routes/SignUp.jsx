@@ -27,7 +27,10 @@ export default function SignUp(){
         createUsuario(nuevoUsuario)
         .then(usuario =>{
         console.log("el usuario es: "+usuario);
-        
+            if(usuario.token){
+                auth.saveUser(usuario.token);
+                goTo("/");
+            }
         })
         .catch((error)=>{
         console.log(error);
