@@ -37,7 +37,7 @@ export default function Login(){
     };
     if(auth.isAuthenticated)
     {
-        return <Navigate to="/lobby" />
+        return <Navigate to="/Tarea1-front-react/lobby" />
     }
     return(
         <>

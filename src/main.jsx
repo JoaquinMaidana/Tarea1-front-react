@@ -24,7 +24,7 @@ const router = createBrowserRouter([
         element: <ProtectedRoute/>,
         children: [
             {
-                path: "/lobby",
+                path: "/Tarea1-front-react/lobby",
                 element: <Lobby/>,
             }
         ]
