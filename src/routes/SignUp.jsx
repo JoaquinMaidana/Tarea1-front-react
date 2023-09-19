@@ -29,7 +29,7 @@ export default function SignUp(){
         console.log("el usuario es: "+usuario);
             if(usuario.token){
                 auth.saveUser(usuario.token);
-                goTo("/");
+                goTo("/Tarea1-front-react");
             }
         })
         .catch((error)=>{
@@ -41,7 +41,7 @@ export default function SignUp(){
 
     if(auth.isAuthenticated)
     {
-        return <Navigate to="/lobby" />
+        return <Navigate to="/Tarea1-front-react/lobby" />
     }
 
     return(

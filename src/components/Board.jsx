@@ -69,8 +69,17 @@ class Board extends React.Component {
       }
     });
 
-    this.socket.on('disconect', (obj) => {
-      
+      this.socket.on('cerroOtro', (obj) => {
+        this.socket.disconnect();
+
+      // Crea una nueva conexión con los mismos datos
+      this.socket = io('http://localhost:1234/game', {
+        query: {
+          nickname: this.state.nickname,
+          id: this.props.id,
+          sala: this.props.sala,
+        },
+      });
     });
 
     
@@ -78,7 +87,7 @@ class Board extends React.Component {
   }
 
   componentWillUnmount() {
-    
+    this.socket.emit('finalizar');
     this.socket.disconnect();
   }
 

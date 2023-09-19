@@ -53,7 +53,7 @@ export default function PortalLayout({ children }) {
 
             <footer class="d-flex align-items-center flex-column">
                 <div class="footContainer">
-                <img class="imagenTip" src="../public/TI-logo.png" alt="Imagen Tip" />   -  Creado por Joaquín Maidana - 2023
+                <img class="imagenTip" src="/Tarea1-front-react/TI-logo.png" alt="Imagen Tip" />   -  Creado por Joaquín Maidana - 2023
                 
                 
                 
