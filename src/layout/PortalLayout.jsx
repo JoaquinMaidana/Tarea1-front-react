@@ -11,14 +11,14 @@ export default function PortalLayout({ children }) {
 
         console.log("click");
         auth.logout(); // Llama a la función de logout aquí
-        goTo('/'); // Redirige a la página de logout o donde quieras después del logout
+        goTo('/Tarea1-front-react'); // Redirige a la página de logout o donde quieras después del logout
     };
     return (
         <>
             <header>
                 <nav className="navbar navbar-expand-lg bg-light">
                     <div className="container-fluid">
-                        <Link className="navbar-brand" to="/">
+                        <Link className="navbar-brand" to="/Tarea1-front-react">
                             Tarea 1
                         </Link>
                         <button
@@ -34,7 +34,7 @@ export default function PortalLayout({ children }) {
                         </button>
                         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                             <div className="navbar-nav">
-                                <Link className="nav-link active" to="/lobby">
+                                <Link className="nav-link active" to="/Tarea1-front-react/lobby">
                                     Lobby
                                 </Link>                               
                               

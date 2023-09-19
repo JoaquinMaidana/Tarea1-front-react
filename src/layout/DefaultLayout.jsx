@@ -14,7 +14,7 @@ export default function DefaultLayout({ children }) {
 
             <footer class="d-flex justify-content-center">
                 <div class="footContainer">
-                <img class="imagenTip" src="../public/TI-logo.png" alt="Imagen Tip" />   -  Creado por Joaquín Maidana - 2023
+                <img class="imagenTip" src="/Tarea1-front-react/TI-logo.png" alt="Imagen Tip" />   -  Creado por Joaquín Maidana - 2023
                 </div>
              
             </footer>

@@ -1,4 +1,5 @@
 import axios from 'axios'; 
+import { api_base } from '../../config/config.js';
 export const infoUsuario = ({ token }) => {
   console.log('Token:', token); // Verifica si el token tiene el valor esperado
 
@@ -7,7 +8,7 @@ export const infoUsuario = ({ token }) => {
   };
 
   return axios
-    .get('http://localhost:1234/api/auth/me', { headers })
+    .get(api_base+'api/auth/me', { headers })
     .then(response => {
       console.log(response);
       const { data } = response;

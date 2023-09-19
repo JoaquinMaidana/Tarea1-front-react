@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
+
 
 import Login from './routes/Login.jsx';
 import SignUp from './routes/SignUp.jsx';

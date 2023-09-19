@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import { api_base } from '../../config/config.js';
 export const get10Partidas = (orden, limite) => {
   const params = {};
 
@@ -13,7 +13,7 @@ export const get10Partidas = (orden, limite) => {
     params.limite = limite;
   }
 
-  return axios.get('http://localhost:1234/partidas/partidas', { params })
+  return axios.get(api_base+'partidas/partidas', { params })
     .then(response => {
       console.log(response);
       const { data } = response;
