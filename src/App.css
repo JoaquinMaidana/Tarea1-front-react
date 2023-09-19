@@ -45,7 +45,7 @@ h1,h2{
 
 main{
   height: 88vh;
-  background-image: url('./background-lobby.jpg');
+  background-image: url('/Tarea1-front-react/background-lobby.jpg');
 }
 
 footer{
