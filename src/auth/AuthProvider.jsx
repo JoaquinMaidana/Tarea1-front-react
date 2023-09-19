@@ -43,6 +43,7 @@ export function AuthProvider({ children }) {
         console.log("llega aca");
         const token = getTokenL();
         if(token){
+
             setToken(token);
             setIsAuthenticated(true);
             const userInfo = await getUserInfo(token);
@@ -61,7 +62,7 @@ export function AuthProvider({ children }) {
       return token;
   }
 
-  function getUser(){
+   function getUser(){
     return user;
   }
 
