@@ -26,7 +26,7 @@ export default function Login(){
         console.log("el token es: "+usuario.token);
             if(usuario.token){
                 auth.saveUser(usuario.token);
-                goTo("/");
+                goTo("/Tarea1-front-react");
             }
            
         })
