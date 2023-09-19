@@ -12,7 +12,7 @@ import { AuthProvider } from './auth/AuthProvider.jsx';
 
 const router = createBrowserRouter([
     {
-        path:"/",
+        path:"/Tarea1-front-react",
         element: <Login />,
     },
     {
@@ -20,7 +20,7 @@ const router = createBrowserRouter([
         element: <SignUp/>,
     },
     {
-        path: "/",
+        path: "/Tarea1-front-react",
         element: <ProtectedRoute/>,
         children: [
             {
