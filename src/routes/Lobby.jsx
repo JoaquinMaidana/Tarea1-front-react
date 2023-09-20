@@ -34,7 +34,7 @@ export default function Lobby() {
 
   //en el use efect pongo los socket on
   useEffect(() => {
-    socket = io('http://localhost:1234/lobby');
+    socket = io('https://tarea1-63hu.onrender.com/lobby');
     socket.on('connect', () => setIsConnected(true));
 
     socket.on('chat_message', (data) => {

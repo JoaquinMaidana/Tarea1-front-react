@@ -23,7 +23,7 @@ function BoardWrapper() {
 class Board extends React.Component {
   constructor(props) {
     super(props);
-    this.socket = io('http://localhost:1234/game', {
+    this.socket = io('https://tarea1-63hu.onrender.com/game', {
       query: {
         nickname: props.nickname,
         id: props.id,
