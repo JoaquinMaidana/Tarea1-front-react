@@ -23,7 +23,14 @@ export default function Lobby() {
   const [itemsTodas, setItemsTodas] = useState([]);
   const [itemsUltimas10, setItemsUltimas10] = useState([]);
   const [topGanadores, setTopGanadores] = useState([]);
-
+  
+  const [salas, setSalas] = useState({
+    1: { jugadores: 0 },
+    2: { jugadores: 0 },
+    3: { jugadores: 0 },
+    4: { jugadores: 0 },
+    5: { jugadores: 0 },
+  });
 
   //en el use efect pongo los socket on
   useEffect(() => {
@@ -37,7 +44,25 @@ export default function Lobby() {
 
     socket.on('gameConnection', (sala) => {
      console.log(sala);
+      sala = parseInt(sala.sala);
+      setSalas((salas) => ({
+        ...salas,
+        [sala]: {
+          jugadores:  salas[sala].jugadores + 1 ,
+        },
+      }));
     });
+
+    socket.on('gameDisconnection', (sala) => {
+      console.log(sala);
+       sala = parseInt(sala.sala);
+       setSalas((salas) => ({
+         ...salas,
+         [sala]: {
+           jugadores:  salas[sala].jugadores > 0 ? salas[sala].jugadores - 1 : 0,
+         },
+       }));
+     });
 
     return () => {
       socket.off('connect');
@@ -93,35 +118,35 @@ export default function Lobby() {
             Sala 1
           </Link>
 
-          <span>0/2</span>
+          <span>{salas[1].jugadores}/2</span>
         </div>
         <div>
           <Link class="linkSala" to="/juego/2">
             Sala 2
           </Link>
 
-          <span>0/2</span>
+          <span>{salas[2].jugadores}/2</span>
         </div>
         <div>
           <Link class="linkSala" to="/juego/3">
             Sala 3
           </Link>
 
-          <span>0/2</span>
+          <span>{salas[3].jugadores}/2</span>
         </div>
         <div>
           <Link class="linkSala" to="/juego/4">
             Sala 4
           </Link>
 
-          <span>0/2</span>
+          <span>{salas[4].jugadores}/2</span>
         </div>
         <div>
           <Link class="linkSala" to="/juego/5">
             Sala 5
           </Link>
 
-          <span>0/2</span>
+          <span>{salas[5].jugadores}/2</span>
         </div>
       </div>
       <h2>{isConnected ? 'CONECTADO🟢' : 'NO CONECTADO🔴'}</h2>

@@ -30,6 +30,8 @@ class Board extends React.Component {
         sala: props.sala // Reemplaza 'TuNicknameAquí' con el nickname real
       },
     });
+
+    this.bloqueado = false;
     //this.playerX = 'sin asignar';
     //this.playerO = 'sin asignar';
    
@@ -51,10 +53,11 @@ class Board extends React.Component {
   componentDidMount() {
     
     this.socket.on('jugada', (indice) => {
-      this.handleClick(indice);
+      this.handleClick(indice,2);
     });
 
     this.socket.on('posicion', (obj) => {
+      console.log("se asigna la posicion");
       if(obj.posicion == 'X'){
           this.setState({ playerX: obj.jugador });
           this.setState({ playerXid: obj.idJugador });
@@ -70,9 +73,9 @@ class Board extends React.Component {
     });
 
       this.socket.on('cerroOtro', (obj) => {
-        this.socket.disconnect();
+        this.socket.close();
 
-      // Crea una nueva conexión con los mismos datos
+      
       this.socket = io('http://localhost:1234/game', {
         query: {
           nickname: this.state.nickname,
@@ -94,11 +97,19 @@ class Board extends React.Component {
   
   
 
-  handleClick(i) {
+  handleClick(i,turno) {
+    
     const squares = this.state.squares.slice();
-    if (this.state.winner || squares[i]) {
+    if (this.state.winner || squares[i] ) {
+      return;
+    }else if(turno == undefined && this.state.nickname == this.state.playerX && this.state.xIsNext == false ){
+      return;
+    }else if(turno == undefined && this.state.nickname == this.state.playerO && this.state.xIsNext == true ){
       return;
     }
+    
+
+    
     squares[i] = this.state.xIsNext ? 'X' : 'O';
     const winner = calculateWinner(squares);
    
@@ -107,6 +118,10 @@ class Board extends React.Component {
       xIsNext: !this.state.xIsNext,
       winner: winner,
     });
+
+    if(this.state.nickname == this.state.nicknameO && this.state.xIsNext == true ){
+        this.bloqueado = false;
+    }
 
     this.socket.emit('jugada', i);
 

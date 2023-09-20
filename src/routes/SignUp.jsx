@@ -54,7 +54,7 @@ export default function SignUp(){
                         <h1>Registro</h1>
                         <form class="mt-5" onSubmit={handleSubmit}>
                             <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Nickname</label>
+                                <label for="exampleInputEmail1" class="form-label colorWhite">Nickname</label>
                                 <input 
                                     type="text" 
                                     value={nickname} 
@@ -64,7 +64,7 @@ export default function SignUp(){
                                
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputEmail1" class="form-label">Correo</label>
+                                <label for="exampleInputEmail1" class="form-label colorWhite">Correo</label>
                                 <input 
                                     type="text" 
                                     value={email} 
@@ -74,7 +74,7 @@ export default function SignUp(){
                                 
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInputPassword1" class="form-label">Password</label>
+                                <label for="exampleInputPassword1" class="form-label colorWhite">Password</label>
                                 <input 
                                     type="password" 
                                     value={password} 
