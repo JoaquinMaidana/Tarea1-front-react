@@ -26,7 +26,7 @@ export default function Login(){
         console.log("el token es: "+usuario.token);
             if(usuario.token){
                 auth.saveUser(usuario.token);
-                goTo("/Tarea1-front-react");
+                goTo("/650a52e134ff5b6ca48cb8ba--dulcet-genie-85298e.netlify.app/");
             }
            
         })

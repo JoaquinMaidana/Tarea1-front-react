@@ -12,7 +12,7 @@ import { AuthProvider } from './auth/AuthProvider.jsx';
 
 const router = createBrowserRouter([
     {
-        path:"/Tarea1-front-react",
+        path:"/650a52e134ff5b6ca48cb8ba--dulcet-genie-85298e.netlify.app/",
         element: <Login />,
     },
     {
@@ -20,11 +20,11 @@ const router = createBrowserRouter([
         element: <SignUp/>,
     },
     {
-        path: "/Tarea1-front-react",
+        path: "/650a52e134ff5b6ca48cb8ba--dulcet-genie-85298e.netlify.app/",
         element: <ProtectedRoute/>,
         children: [
             {
-                path: "/Tarea1-front-react/lobby",
+                path: "/650a52e134ff5b6ca48cb8ba--dulcet-genie-85298e.netlify.app//lobby",
                 element: <Lobby/>,
             }
         ]
